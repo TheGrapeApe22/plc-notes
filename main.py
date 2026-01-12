@@ -6,15 +6,17 @@ import pathlib
 load_dotenv()
 client = genai.Client()
 
-filepath = pathlib.Path('newsletter.pdf')
+filepath = pathlib.Path('newsletter.png')
 
-prompt = "Summarize this document"
+with open('prompt.txt', 'r') as file:
+    prompt = file.read()
+
 response = client.models.generate_content(
   model="gemini-2.5-flash",
   contents=[
       types.Part.from_bytes(
         data=filepath.read_bytes(),
-        mime_type='application/pdf',
+        mime_type='image/png',
       ),
       prompt])
 print(response.text)

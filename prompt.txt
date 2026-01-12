@@ -1,0 +1,20 @@
+List all the meeting names and dates from february to march, with each meeting following this specific format.
+
+<Month> <day> [<topic>]
+Opening [<name>, <name>, <name>]: (15)
+Skill [<name>, <name>]: (20)
+Game [<name>, <name>]: (20)
+Intrapatrol [<name>, <name>]: (20)
+Closing [<name>, <name>, <name>]: (15)
+
+Only fill in the parts that are in angled brackets <>, leave everything else in the template exactly as it is. For <name>, use the letters assigned and convert them to names based on this key:
+A = Daiwik
+B = Anish
+C = Rohan
+D = Aneesh
+E = AT
+F = Tavish
+G = Tejas
+For example, if it assigns "CD", you should replace the corresponding <name>, <name> with Rohan, Aneesh.
+Write out the month fully.
+Replace <topic> only if the meeting lists a topic. Otherwise, replace it with nothing, it should look like []. Finally, here is the format:
