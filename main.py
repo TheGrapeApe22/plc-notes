@@ -10,7 +10,7 @@ client = genai.Client()
 
 meetings_image = pathlib.Path('meetings.png')
 
-with open('prompt.txt', 'r') as file:
+with open('meetings_prompt.txt', 'r') as file:
     prompt = file.read()
 
 meetings = client.models.generate_content(
