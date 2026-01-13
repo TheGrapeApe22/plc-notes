@@ -50,20 +50,22 @@ doc = Document()
 
 # styling
 style_normal = doc.styles['Normal']
-style_heading2 = doc.styles['Heading 2']
-style_heading1 = doc.styles['Heading 1']
 style_normal.font.name = 'Arial'
-style_heading2.font.name = 'Arial'
-style_heading1.font.name = 'Arial'
-style_heading2.font.color.rgb = docx.shared.RGBColor(0, 0, 0)
-style_heading1.font.color.rgb = docx.shared.RGBColor(0, 0, 0)
 style_normal.paragraph_format.space_after = Pt(0)
 style_normal.paragraph_format.space_before = Pt(0)
 style_normal.paragraph_format.line_spacing = 1
-style_heading2.font.size = Pt(16)
+
+style_heading1 = doc.styles['Heading 1']
+style_heading1.font.name = 'Arial'
+style_heading1.font.color.rgb = docx.shared.RGBColor(0, 0, 0)
 style_heading1.font.size = Pt(20)
-style_heading2.font.bold = False
 style_heading1.font.bold = False
+
+style_heading2 = doc.styles['Heading 2']
+style_heading2.font.name = 'Arial'
+style_heading2.font.color.rgb = docx.shared.RGBColor(0, 0, 0)
+style_heading2.font.size = Pt(16)
+style_heading2.font.bold = False
 
 doc.add_paragraph(f'PLC {datetime.today().strftime("%-m/%-d/%Y")}\nPresent:\nAbsent:\n')
 
