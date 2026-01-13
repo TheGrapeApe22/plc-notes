@@ -59,13 +59,11 @@ style.paragraph_format.line_spacing = 1
 lines = notes.strip().split('\n')
 
 for line in lines:
+    # strip
     line = line.strip()
-    
-    # Skip empty lines
     if not line:
         continue
     
-    paragraph = doc.add_paragraph()
     if line.split()[0] in ("Opening", "Skill", "Game", "Intrapatrol", "Closing"):
         # bullet point
         doc.add_paragraph(line, style='List Bullet')
