@@ -53,7 +53,7 @@ style_normal = doc.styles['Normal']
 style_normal.font.name = 'Arial'
 style_normal.paragraph_format.space_after = Pt(0)
 style_normal.paragraph_format.space_before = Pt(0)
-style_normal.paragraph_format.line_spacing = 1
+style_normal.paragraph_format.line_spacing = 1.15
 
 style_heading1 = doc.styles['Heading 1']
 style_heading1.font.name = 'Arial'
