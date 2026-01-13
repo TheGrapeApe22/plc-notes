@@ -1,14 +1,19 @@
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from dotenv import load_dotenv
 import pathlib
+import docx
 from docx import Document
 from docx.shared import Inches, Pt
+from datetime import datetime
 
 load_dotenv()
+
+print("loading gemini")
 client = genai.Client()
 
 # get meetings
+print("getting meetings")
 meetings_image = pathlib.Path('meetings.png')
 with open('meetings_prompt.txt', 'r') as file:
     prompt = file.read()
@@ -23,6 +28,7 @@ meetings = client.models.generate_content(
       prompt]).text
 
 # get outings
+print("getting outings")
 outings_image = pathlib.Path('outings.png')
 with open('outings_prompt.txt', 'r') as file:
     prompt = file.read()
@@ -42,15 +48,39 @@ print(meetings)
 # build docx
 doc = Document()
 
-style = doc.styles['Normal']
-style.font.name = 'Arial'
-style.paragraph_format.space_after = Pt(0)
-style.paragraph_format.space_before = Pt(0)
-style.paragraph_format.line_spacing = 1
+# styling
+style_normal = doc.styles['Normal']
+style_heading2 = doc.styles['Heading 2']
+style_heading1 = doc.styles['Heading 1']
+style_normal.font.name = 'Arial'
+style_heading2.font.name = 'Arial'
+style_heading1.font.name = 'Arial'
+style_heading2.font.color.rgb = docx.shared.RGBColor(0, 0, 0)
+style_heading1.font.color.rgb = docx.shared.RGBColor(0, 0, 0)
+style_normal.paragraph_format.space_after = Pt(0)
+style_normal.paragraph_format.space_before = Pt(0)
+style_normal.paragraph_format.line_spacing = 1
+style_heading2.font.size = Pt(16)
+style_heading1.font.size = Pt(20)
+style_heading2.font.bold = False
+style_heading1.font.bold = False
+
+doc.add_paragraph(f'PLC {datetime.today().strftime("%-m/%-d/%Y")}\nPresent:\nAbsent:\n')
+
+# outings
+outings_split = outings.strip().split('\n')
+for line in outings_split:
+    # strip
+    line = line.strip()
+    if not line:
+        continue
+    doc.add_paragraph(line, style='Heading 2')
+    doc.add_paragraph("", style='Normal')
 
 # meetings
-lines = meetings.strip().split('\n')
-for line in lines:
+doc.add_paragraph("Meeting Planning", style='Heading 1')
+meetings_split = meetings.strip().split('\n')
+for line in meetings_split:
     # strip
     line = line.strip()
     if not line:
