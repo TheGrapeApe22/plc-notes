@@ -1,4 +1,4 @@
-List all the outings from January to March in this format:
-<Outing name> (<Campmaster>, <mm/dd>)
+List all the events from January to March in this format:
+<Event name> (<Campmaster>, <mm/dd>)
 
-mm/dd should not have trailing zeros. In place of <Campmaster> put the first name of the scout assigned.
+Do not add any other words or characters that do not follow this template. mm/dd should not have trailing zeros. In place of <Campmaster>, put the first name of the scout assigned.
